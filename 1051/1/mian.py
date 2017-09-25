@@ -63,9 +63,6 @@ def input_data():
     data['div'] = 0
     data['Ex'] = 0.0
     data['u_ex_div_by_ex'] = 0.0
-    print("实验：自组电位差计")
-    print("请参照课本P165表格输入，其中R\'\'为灵敏度测量两个阻值")
-    print("要求输入的数字小于99999.9大于0.0，保留一位有效数字")
     data['raws']['R1'] = input_float("R1=")
     data['raws']['R2'] = input_float("R2=")
     data['raws']['R1\''] = input_float("R1\'=")
@@ -130,6 +127,9 @@ def cal_u_ex(data):
     return
 
 def main():
+    print("实验：自组电位差计")
+    print("请参照课本P165表格输入，其中R\'\'为灵敏度测量两个阻值")
+    print("要求输入的数字小于99999.9大于0.0，保留一位有效数字")
     data = input_data()
     cal_delta(data)
     cal_u(data)
