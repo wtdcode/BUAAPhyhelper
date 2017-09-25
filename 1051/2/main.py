@@ -70,7 +70,7 @@ def cal_delta(data):
     
     # calculate delta_U1
     data['deltas']['U1'] = 0.0001*(data['raws']['U1'] + 0.1/10)
-    print("delta_Ux = 0.01%%x(U1+U0/10) = %.10f" % data['deltas']['U1'])
+    print("delta_U1 = 0.01%%x(U1+U0/10) = %.10f" % data['deltas']['U1'])
     
     # calculate delta_Ux
     data['deltas']['Ux'] = 0.0001*(data['raws']['Ux'] + 0.1/10)
@@ -92,20 +92,27 @@ def cal_urx_div_by_rx(data):
     uu1 = data['us']['U1']
     ux = data['raws']['Ux']
     uux = data['us']['Ux']
-    print(r1, ur1, u1, uu1, ux, uux)
     urx_div_by_rx = pow(pow(ur1/r1,2)+pow(uux/ux,2)+pow(uu1/u1,2),0.5)
     print("u_Rx/Rx = √((u_R1/R1)^2 + (u_Ux/Ux)^2 + (u_U1/U1)^2) = %.10f" % urx_div_by_rx)
     data['urx_div_by_rx'] = urx_div_by_rx
+    return
+
+def cal_u_rx(data):
+    data['Rx'] = data['raws']['Ux']*data['raws']['R1']/data['raws']['U1']
+    print("Rx = (Ux/U1)*R1 = %.10f" % data['Rx']) 
+    data['us']['Rx'] = data['Rx']*data['urx_div_by_rx']
+    print("u_Rx = Rx*(u_Rx/Rx) = %.10f" % data['us']['Rx'])
     return
     
 def main():
     print("实验：箱式电位差计测固定电阻")
     print("所有结果均保留了十位")
-    print("R1->变阻箱阻值（请保留一位小数） Ux->固定电阻两段阻值 U1->变阻箱两段阻值")
+    print("R1->变阻箱阻值（请保留一位小数） Ux->固定电阻两端阻值 U1->变阻箱两端阻值")
     data = input_data()
     cal_delta(data)
     cal_u(data)
     cal_urx_div_by_rx(data)
+    cal_u_rx(data)
     return
 
 if __name__ == "__main__":
