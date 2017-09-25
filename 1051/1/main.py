@@ -27,7 +27,7 @@ def get_int_length(num):
     return len(str(int(floor(float(num)))))
 
     
-def input_float(prompt):
+def input_float(prompt, precise = 1):
     while True:
         num = input(prompt)
         try:
@@ -36,7 +36,7 @@ def input_float(prompt):
             print("输入有误，请重新输入")
             continue
         else:
-            if get_precise(num) != 1 or  get_int_length(num) > 5 or float(num) < 0:
+            if get_precise(num) > precise or  get_int_length(num) > 5 or float(num) < 0:
                 print("输入有误，请重新输入")
                 continue
             else:
