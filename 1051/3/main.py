@@ -103,11 +103,11 @@ def cal_u_rx(data):
     data['us']['Rx'] = data['Rx']*data['urx_div_by_rx']
     print("u_Rx = Rx*(u_Rx/Rx) = %.10f" % data['us']['Rx'])
     return
-    
+
 def main():
     print("实验：箱式电位差计测固定电阻")
     print("所有结果均保留了十位")
-    print("R1->变阻箱阻值（请保留一位小数） Ux->固定电阻两端阻值 U1->变阻箱两端阻值")
+    print("R1->变阻箱阻值（请保留一位小数） Ux->固定电阻两端阻值 U1->待测电阻两端阻值")
     data = input_data()
     cal_delta(data)
     cal_u(data)
