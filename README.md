@@ -98,10 +98,16 @@ A：本人对脚本产生的任何后果概不负责。
 
 ### 最终输出
 
-最终会输出对应的修正图像，L和K以及T2‘和T3’。
+最终会输出对应的修正图像，L和K以及T2'和T3'。
+
+![](http://a2.qpic.cn/psb?/V10hb9Qz3wPcMq/i2MSZX7D*cdJ2idIgAeub7yEZ0ePx0KLRlp0VFhvgBM!/b/dPkAAAAAAAAA&ek=1&kp=1&pt=0&bo=iASAAogEgAIDACU!&vuin=771644612&tm=1507989600&sce=60-1-1&rf=viewer_311)
 
 ### 注意
 
 - 由于采用折线拟合，实际上计算会有很大的误差。
 - K采用解微分方程后线性回归求得，可能跟以往处理不同。
 - **代码非常非常垃圾**。
+
+## 2.测量热功当量
+
+还没写完。
