@@ -1,9 +1,9 @@
 
 format long;
 
-precision = 0.5
+precision = 0.005
 
-step = 0.05
+step = 0.0005
 
 %%%%%% const %%%%%%
 % R_{theta}(theta)
@@ -12,7 +12,7 @@ step = 0.05
 % m1
 % m2
 % M
-load("const");
+load('const');
 
 Theta = RtoT(const(1));
 T1 = const(2);
@@ -26,9 +26,9 @@ c2 = c1;
 
 %%%%%% experiment data %%%%%%
 % r T
-load("down");
-load("melt");
-load("up");
+load('down');
+load('melt');
+load('up');
 
 down(:,2) = RtoT(down(:,2));
 melt(:,2) = RtoT(melt(:,2));
@@ -56,7 +56,14 @@ handle = plot(down(:,1), down(:,2), "-r",
 down_line = get_line([down(:,1) ones(size(down,1),1)], down(:,2));
 up_line = get_line([up(:,1) ones(size(up,1),1)], up(:,2));
 
-for x=down(:,1)(end)+0.1:step:up(:,1)(1)-0.1
+left = down(:,1)(end);
+
+right = up(:,1)(1);
+
+x = (right + left) / 2;
+
+while abs(right - left) > step
+    x = (right + left)/2;
     x_l_i = find(melt(:,1)<=x); % x_left_index
     x_r_i = find(melt(:,1)>=x); % x_right_index
     current_line = get_line([melt(x_l_i(end),1),1; melt(x_r_i(1),1),1], [melt(x_l_i(end),2); melt(x_r_i(1),2)]);
@@ -78,6 +85,11 @@ for x=down(:,1)(end)+0.1:step:up(:,1)(1)-0.1
              [0,up(end,1)], [Theta, Theta], '--c');
         L = (1./M)*(c0.*m+c1.*m1+c2.*m2).*(T2-T3)-c0.*T3+c1*T1
         break;
+    end
+    if Sa > Sb
+        right = x;
+    else
+        left = x;
     end
 end
 
