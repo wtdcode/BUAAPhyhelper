@@ -46,12 +46,17 @@ b2 = up_line(1);
 
 a2 = up_line(2);
 
+figure(2);
+
+plot(up_x, up_y, '-m');
+
 Cm = c0*m + c1*m1 + c2m2;
 
 J = V.*V/(R*Cm*(b2+K*(a2-Theta)))
 
-
 [u_a2, u_b2, r2] = get_uab(up_x, up_y, up_line);
+
+
 
 r2
 
