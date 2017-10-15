@@ -1,4 +1,5 @@
-
+clc;
+clear;
 format long;
 
 precision = 0.005
@@ -42,6 +43,10 @@ K_x = down(:,1);
 K_line = get_line([K_x ones(size(K_x,1),1)],K_y);
 
 K = -K_line(1)
+
+disp('如果按照以往的处理方式');
+
+K = -(c0.*m+c1.*m1+c2.*m2).*(1/(down(end,1)-down(1,1))).*log((down(end,2)-Theta)/(down(1,2)-Theta))
 
 figure(1)
 
