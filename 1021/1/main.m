@@ -41,12 +41,12 @@ K_y = log(down(:,2)-Theta);
 K_x = down(:,1);
 
 K_line = get_line([K_x ones(size(K_x,1),1)],K_y);
-
-K = -K_line(1)
+% 注意！这里K是散热**系数**乘以Cm才是散热**常数**
+K = -K_line(1)*(c0.*m + c1.*m1 + c2.*m2)
 
 disp('如果按照以往的处理方式');
 
-K = -(c0.*m+c1.*m1+c2.*m2).*(1/(down(end,1)-down(1,1))).*log((down(end,2)-Theta)/(down(1,2)-Theta))
+K = -(c0.*m + c1.*m1 + c2.*m2).*(1/(down(end,1)-down(1,1))).*log((down(end,2)-Theta)/(down(1,2)-Theta))
 
 figure(1)
 
@@ -82,6 +82,7 @@ while abs(right - left) > step
     Sb += cal_area(current_line, up_line, x, x_r(1));
     if abs(Sa-Sb)<= precision
         hold on;
+        x
         T2 = [x 1]*down_line
         T3 = [x 1]*up_line
         plot([x,up(1,1)],[T3,up(1,2)], '--k',

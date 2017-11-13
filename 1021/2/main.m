@@ -31,7 +31,9 @@ K = -K_line(1)
 
 [u_a1, u_b1, r1] = get_uab(K_x, K_y, K_line);
 
-u_K = -u_b1;
+u_b1
+
+u_K = -u_b1
 
 figure(1);
 
@@ -55,8 +57,6 @@ Cm = c0*m + c1*m1 + c2m2;
 J = V.*V/(R*Cm*(b2+K*(a2-Theta)))
 
 [u_a2, u_b2, r2] = get_uab(up_x, up_y, up_line);
-
-
 
 r2
 
