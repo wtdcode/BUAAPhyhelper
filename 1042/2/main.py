@@ -11,7 +11,8 @@ def run():
     print("delta_yi = %0.4f" % (delta_yi,))
     u_yi = delta_yi / sqrt(3)
     print("u_yi = %0.4f" % (u_yi,))
-    u_ling = 0.2 / S
+    delata_ling = 0.2 / S
+    u_ling = delata_ling / sqrt(3)
     print("u_ling = %0.4f" % (u_ling,))
     u_R = sqrt(u_yi*u_yi + u_ling*u_ling)
     print("u_R = %0.4f" % (u_R,))
